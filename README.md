@@ -102,7 +102,7 @@ A seção de conclusão do notebook traduz a queda de captura em estimativa de p
 
 ## Landing page
 
-O arquivo `index.html` apresenta o projeto em formato de página web, com os principais achados, a linha do tempo do ponto de quebra de 2015 e a seção de impacto social. Está publicado via GitHub Pages em: https://gabrielyazzevedo.github.io/analise-ambiental-es/
+O arquivo `index.html` apresenta o projeto em formato de página web, com os principais achados, a linha do tempo do ponto de quebra de 2015 e a seção de impacto social. Está publicado via GitHub Pages. [Clique aqui](https://gabrielyazzevedo.github.io/analise-ambiental-es/)
 
 ## Vídeo de apresentação
 
