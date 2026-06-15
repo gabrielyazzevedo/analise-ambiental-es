@@ -30,7 +30,7 @@ ProjetoIII/
 │   └── dados_cruzados_manguezal_pesca.csv
 ├── graficos_gerados/                     figuras fig01 a fig12
 ├── analise_pesca.ipynb                   notebook principal da análise
-├── demo.html                            landing page do projeto (GitHub Pages)
+├── index.html                            landing page do projeto (GitHub Pages)
 ├── referencias.md                        fontes e bibliografia
 └── README.md
 ```
@@ -102,7 +102,7 @@ A seção de conclusão do notebook traduz a queda de captura em estimativa de p
 
 ## Landing page
 
-O arquivo `demo.html` apresenta o projeto em formato de página web, com os principais achados, a linha do tempo do ponto de quebra de 2015 e a seção de impacto social. Está publicado via GitHub Pages em: [adicionar link após publicação]
+O arquivo `index.html` apresenta o projeto em formato de página web, com os principais achados, a linha do tempo do ponto de quebra de 2015 e a seção de impacto social. Está publicado via GitHub Pages em: https://gabrielyazzevedo.github.io/analise-ambiental-es/
 
 ## Vídeo de apresentação
 
