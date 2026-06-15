@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manguezal e Pesca Artesanal | Impacto de Mariana no Espírito Santo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #0E2A1E;
+    --bg-deep-2: #133523;
+    --sand: #FAF6EE;
+    --sand-dim: #E8E2D2;
+    --leaf: #5C8A6B;
+    --leaf-light: #A8C4A2;
+    --terra: #C9633B;
+    --terra-light: #E8A586;
+    --ink: #0E2A1E;
+    --line: rgba(250,246,238,0.14);
+    --line-strong: rgba(250,246,238,0.28);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: var(--bg-deep);
+    color: var(--sand);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .display {
+    font-family: 'Fraunces', serif;
+    font-optical-sizing: auto;
+  }
+
+  .mono {
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(14,42,30,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .nav-brand {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.01em;
+    color: var(--sand);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-brand .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--terra);
+    flex-shrink: 0;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--leaf-light);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--sand); }
+
+  @media (max-width: 720px) {
+    .nav-links { display: none; }
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    padding: 88px 0 64px;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    color: var(--leaf-light);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 32px; height: 1px;
+    background: var(--terra);
+  }
+  .hero h1 {
+    font-size: clamp(34px, 6vw, 64px);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    max-width: 850px;
+    color: var(--sand);
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--terra-light);
+    font-weight: 500;
+  }
+  .hero-sub {
+    margin-top: 28px;
+    font-size: 18px;
+    color: var(--leaf-light);
+    max-width: 620px;
+  }
+  .hero-meta {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .pill {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    padding: 7px 14px;
+    border: 1px solid var(--line-strong);
+    border-radius: 100px;
+    color: var(--sand-dim);
+  }
+
+  /* ===== BIG NUMBER STRIP ===== */
+  .strip {
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-deep-2);
+  }
+  .strip .wrap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .strip-item {
+    padding: 36px 24px;
+    border-right: 1px solid var(--line);
+  }
+  .strip-item:last-child { border-right: none; }
+  .strip-num {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 600;
+    color: var(--terra-light);
+    line-height: 1;
+  }
+  .strip-num.green { color: var(--leaf-light); }
+  .strip-label {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--sand-dim);
+    line-height: 1.5;
+  }
+  @media (max-width: 800px) {
+    .strip .wrap { grid-template-columns: repeat(2, 1fr); }
+    .strip-item:nth-child(2) { border-right: none; }
+    .strip-item:nth-child(3), .strip-item:nth-child(4) { border-top: 1px solid var(--line); }
+  }
+
+  /* ===== SECTION GENERIC ===== */
+  section { padding: 88px 0; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 48px;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 24px;
+  }
+  .section-head h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 600;
+    color: var(--sand);
+  }
+  .section-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--leaf-light);
+    white-space: nowrap;
+  }
+
+  /* ===== TIMELINE (signature element) ===== */
+  .timeline-section { padding-top: 64px; }
+  .timeline-wrap {
+    position: relative;
+    padding: 40px 0 64px;
+  }
+  .timeline-track {
+    position: relative;
+    height: 4px;
+    border-radius: 4px;
+    background: linear-gradient(to right,
+      var(--leaf) 0%, var(--leaf) 73.5%,
+      var(--terra) 73.5%, var(--terra) 100%);
+    margin: 0 0 0 0;
+  }
+  .timeline-years {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--sand-dim);
+    margin-top: 12px;
+  }
+  .timeline-marker {
+    position: absolute;
+    left: 73.5%;
+    top: -34px;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+  .timeline-marker .flag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--terra-light);
+    white-space: nowrap;
+    margin-bottom: 6px;
+  }
+  .timeline-marker .stem {
+    width: 1px;
+    height: 26px;
+    background: var(--terra);
+    margin: 0 auto;
+  }
+  .timeline-marker .node {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--terra);
+    margin: -5px auto 0;
+    box-sizing: border-box;
+  }
+  .timeline-caption {
+    margin-top: 40px;
+    font-size: 16px;
+    color: var(--sand-dim);
+    max-width: 680px;
+  }
+  .timeline-caption strong { color: var(--sand); font-weight: 500; }
+
+  /* ===== FINDINGS GRID ===== */
+  .findings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  @media (max-width: 760px) {
+    .findings-grid { grid-template-columns: 1fr; }
+  }
+  .finding-card {
+    background: var(--bg-deep);
+    padding: 36px 36px 32px;
+  }
+  .finding-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+  .finding-head h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 21px;
+    font-weight: 600;
+    color: var(--sand);
+  }
+  .finding-delta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--terra-light);
+    white-space: nowrap;
+  }
+  .finding-delta.up { color: var(--leaf-light); }
+  .finding-card p {
+    font-size: 15px;
+    color: var(--sand-dim);
+    margin-bottom: 16px;
+  }
+  .spark {
+    width: 100%;
+    height: 56px;
+    display: block;
+  }
+  .finding-foot {
+    margin-top: 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--leaf-light);
+    letter-spacing: 0.04em;
+  }
+
+  /* ===== IMPACT / METHOD ===== */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 64px;
+  }
+  @media (max-width: 800px) {
+    .two-col { grid-template-columns: 1fr; gap: 40px; }
+  }
+  .lede {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(20px, 2.6vw, 26px);
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--sand);
+  }
+  .lede em { color: var(--terra-light); font-style: italic; }
+  .body-text {
+    font-size: 16px;
+    color: var(--sand-dim);
+    margin-top: 20px;
+  }
+  .body-text + .body-text { margin-top: 14px; }
+
+  .method-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .method-list li {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    gap: 18px;
+  }
+  .method-list li:first-child { padding-top: 0; }
+  .method-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--leaf-light);
+    flex-shrink: 0;
+    width: 24px;
+    padding-top: 2px;
+  }
+  .method-list h4 {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--sand);
+    margin-bottom: 4px;
+  }
+  .method-list p {
+    font-size: 14px;
+    color: var(--sand-dim);
+  }
+
+  /* ===== AUDIENCE CARDS ===== */
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 800px) {
+    .audience-grid { grid-template-columns: 1fr; }
+  }
+  .audience-card {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 28px 26px;
+  }
+  .audience-card .icon-wrap {
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    background: rgba(168,196,162,0.12);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+  }
+  .audience-card .icon-wrap svg { width: 20px; height: 20px; }
+  .audience-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--sand);
+    margin-bottom: 10px;
+  }
+  .audience-card p {
+    font-size: 14px;
+    color: var(--sand-dim);
+  }
+
+  /* ===== LIMITATIONS ===== */
+  .limits-section {
+    background: var(--bg-deep-2);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .limits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .limit-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 24px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--line);
+  }
+  .limit-item:last-child { border-bottom: none; padding-bottom: 0; }
+  @media (max-width: 720px) {
+    .limit-item { grid-template-columns: 1fr; gap: 8px; }
+  }
+  .limit-item h4 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--terra-light);
+  }
+  .limit-item p {
+    font-size: 15px;
+    color: var(--sand-dim);
+  }
+
+  /* ===== FUTURE WORK ===== */
+  .future-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .future-item {
+    background: var(--bg-deep);
+    padding: 24px 22px;
+  }
+  .future-item h4 {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--sand);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .future-item h4::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--leaf-light);
+    flex-shrink: 0;
+  }
+  .future-item p {
+    font-size: 13px;
+    color: var(--sand-dim);
+    padding-left: 16px;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    padding: 56px 0 48px;
+  }
+  .footer-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 24px;
+  }
+  .footer-title {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--sand);
+    max-width: 360px;
+  }
+  .footer-links {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .footer-links a {
+    color: var(--leaf-light);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .footer-links a:hover { color: var(--sand); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--sand-dim);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  /* ===== SCROLL REVEAL ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* Focus visibility */
+  a:focus-visible {
+    outline: 2px solid var(--terra-light);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="nav-brand"><span class="dot" aria-hidden="true"></span>Manguezal &amp; Pesca · ES</a>
+    <ul class="nav-links">
+      <li><a href="#contexto">Contexto</a></li>
+      <li><a href="#achados">Achados</a></li>
+      <li><a href="#metodo">Método</a></li>
+      <li><a href="#impacto">Impacto social</a></li>
+      <li><a href="#limitacoes">Limitações</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <p class="hero-eyebrow">Projeto Integrador III · Ciência da Computação</p>
+    <h1 class="display">Quando o manguezal recua, a pesca <em>some com ele</em></h1>
+    <p class="hero-sub">
+      Uma análise quantitativa de 38 anos de dados sobre cobertura de manguezal e
+      produção pesqueira artesanal no litoral do Espírito Santo, e o que o rompimento
+      da barragem de Fundão, em Mariana, mudou nessa trajetória.
+    </p>
+    <div class="hero-meta">
+      <span class="pill">1985 – 2023</span>
+      <span class="pill">411 km de litoral capixaba</span>
+      <span class="pill">4 fontes de dados integradas</span>
+      <span class="pill">MapBiomas · Sea Around Us · PMAP-ES · UFES/MPA</span>
+    </div>
+  </div>
+</header>
+
+<div class="strip">
+  <div class="wrap">
+    <div class="strip-item">
+      <div class="strip-num">−86,4%</div>
+      <div class="strip-label">na captura de camarão-sete-barbas entre 2011 e 2023</div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-num">−96%</div>
+      <div class="strip-label">na captura de robalo, de ~8,5 t (2005-06) para 0,21 t (2023)</div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-num green">+24,1 ha/ano</div>
+      <div class="strip-label">crescimento de manguezal até 2015, revertido para −16,5 ha/ano depois</div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-num">60%</div>
+      <div class="strip-label">da captura estadual concentrada em Vitória</div>
+    </div>
+  </div>
+</div>
+
+<section class="timeline-section" id="contexto">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2 class="display">Um ponto de quebra em 2015</h2>
+      <span class="section-tag">1985 → 2023</span>
+    </div>
+    <div class="timeline-wrap reveal">
+      <div class="timeline-marker">
+        <div class="flag">Rompimento de Mariana</div>
+        <div class="stem" aria-hidden="true"></div>
+        <div class="node" aria-hidden="true"></div>
+      </div>
+      <div class="timeline-track" role="img" aria-label="Linha do tempo de 1985 a 2023, com o rompimento da barragem de Mariana em novembro de 2015 marcando a transição de uma tendência verde de crescimento do manguezal para uma tendência laranja de degradação"></div>
+      <div class="timeline-years">
+        <span>1985</span>
+        <span>1995</span>
+        <span>2005</span>
+        <span>2015 — Mariana</span>
+        <span>2023</span>
+      </div>
+    </div>
+    <p class="timeline-caption reveal">
+      Durante trinta anos, a cobertura de manguezal no Espírito Santo cresceu de forma quase
+      perfeitamente linear — <strong>R² = 0,966</strong>. Em novembro de 2015, a lama de
+      rejeitos da barragem de Fundão percorreu mais de 600 km até a foz do Rio Doce e
+      atingiu estuários e manguezais capixabas. A partir daí, a curva se inverte: o pico
+      histórico de <strong>5.286 hectares (2014)</strong> nunca mais foi recuperado.
+    </p>
+  </div>
+</section>
+
+<section id="achados">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2 class="display">O que os dados mostram</h2>
+      <span class="section-tag">Quatro fontes, uma direção</span>
+    </div>
+    <div class="findings-grid reveal">
+
+      <div class="finding-card">
+        <div class="finding-head">
+          <h3>Camarão-sete-barbas</h3>
+          <span class="finding-delta">−86,4%</span>
+        </div>
+        <p>
+          A espécie mais capturada do estado já caía 43,3% em 2012 — antes mesmo de
+          Mariana. Entre 2021 e 2023, as capturas (375–418 t) representam menos de 15%
+          do pico de 2.752 t registrado em 2011. Projeções para 2024–2026 indicam
+          continuidade da queda lenta.
+        </p>
+        <svg class="spark" viewBox="0 0 400 56" preserveAspectRatio="none" role="img" aria-label="Tendência de queda contínua na captura de camarão entre 2011 e 2023">
+          <polyline points="0,8 60,10 100,28 160,32 220,40 280,44 340,46 400,47" fill="none" stroke="#C9633B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="220" y1="0" x2="220" y2="56" stroke="rgba(250,246,238,0.18)" stroke-width="1" stroke-dasharray="3 3"/>
+        </svg>
+        <div class="finding-foot">Sea Around Us 2000–2015 · PMAP-ES 2021–2023</div>
+      </div>
+
+      <div class="finding-card">
+        <div class="finding-head">
+          <h3>Robalo</h3>
+          <span class="finding-delta">−96%</span>
+        </div>
+        <p>
+          Espécie-indicadora da saúde estuarina por depender do manguezal em fases
+          críticas do seu ciclo de vida. Caiu de ~8,5 t no pico (2005–2006) para apenas
+          0,21 t em 2023 — um declínio contínuo e acelerado, sinal sensível de
+          degradação do ecossistema costeiro.
+        </p>
+        <svg class="spark" viewBox="0 0 400 56" preserveAspectRatio="none" role="img" aria-label="Declínio contínuo e acentuado na captura de robalo, próximo de zero em 2023">
+          <polyline points="0,18 60,10 100,14 160,24 220,34 280,44 340,50 400,53" fill="none" stroke="#C9633B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="220" y1="0" x2="220" y2="56" stroke="rgba(250,246,238,0.18)" stroke-width="1" stroke-dasharray="3 3"/>
+        </svg>
+        <div class="finding-foot">Sea Around Us 2000–2015 · PMAP-ES 2021–2023</div>
+      </div>
+
+      <div class="finding-card">
+        <div class="finding-head">
+          <h3>Cobertura de manguezal</h3>
+          <span class="finding-delta">−16,5 ha/ano</span>
+        </div>
+        <p>
+          Inversão de tendência confirmada por modelo polinomial de grau 3
+          (R² = 0,935): não é oscilação natural. De crescimento estável de
+          +24,1 ha/ano em 30 anos para perda constante após 2015, sem recuperação
+          do pico de 5.286 ha.
+        </p>
+        <svg class="spark" viewBox="0 0 400 56" preserveAspectRatio="none" role="img" aria-label="Crescimento estável até 2015, seguido de queda na cobertura de manguezal">
+          <polyline points="0,50 60,40 100,32 160,18 220,8 280,16 340,28 400,38" fill="none" stroke="#A8C4A2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="220" y1="0" x2="220" y2="56" stroke="rgba(250,246,238,0.18)" stroke-width="1" stroke-dasharray="3 3"/>
+        </svg>
+        <div class="finding-foot">MapBiomas Coleção 9 · 1985–2023</div>
+      </div>
+
+      <div class="finding-card">
+        <div class="finding-head">
+          <h3>Sazonalidade</h3>
+          <span class="finding-delta up">mantida</span>
+        </div>
+        <p>
+          O padrão sazonal histórico — pico de captura em novembro, defeso em
+          janeiro-fevereiro — se mantém nos anos recentes. Os pescadores capturam na
+          época certa, mas em volume muito menor: o problema é de recrutamento e
+          habitat, não de abandono da atividade.
+        </p>
+        <svg class="spark" viewBox="0 0 400 56" preserveAspectRatio="none" role="img" aria-label="Padrão sazonal preservado, com pico em novembro e queda em janeiro e fevereiro">
+          <polyline points="0,30 33,38 66,42 100,34 133,20 166,12 200,8 233,14 266,24 300,34 333,40 366,36 400,30" fill="none" stroke="#A8C4A2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="finding-foot">PMAP-ES 2021–2023</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="metodo">
+  <div class="wrap">
+    <div class="two-col">
+      <div class="reveal">
+        <p class="lede">
+          Pescadores artesanais relatam há anos uma redução progressiva nas capturas.
+          <em>Mas percepção não é evidência.</em> Este projeto constrói essa evidência
+          de forma quantitativa.
+        </p>
+        <p class="body-text">
+          Integramos quatro fontes de dados públicas e científicas — MapBiomas, Sea
+          Around Us, PMAP-ES/UFES e o Boletim Estatístico de Pesca do ES — para
+          responder a uma pergunta central: a degradação dos manguezais do Espírito
+          Santo, acelerada pelo desastre de Mariana, está associada à queda documentada
+          na produção pesqueira artesanal?
+        </p>
+        <p class="body-text">
+          Sem um número que comprove e dimensione esse impacto, gestores públicos,
+          órgãos ambientais e o sistema judiciário não dispõem de base técnica para
+          agir. Este projeto existe para preencher essa lacuna.
+        </p>
+      </div>
+      <div class="reveal">
+        <ul class="method-list">
+          <li>
+            <span class="method-num mono">01</span>
+            <div>
+              <h4>Análise exploratória</h4>
+              <p>Séries temporais de cobertura de manguezal e captura por espécie, com tratamento de formatos heterogêneos entre fontes.</p>
+            </div>
+          </li>
+          <li>
+            <span class="method-num mono">02</span>
+            <div>
+              <h4>Regressão linear e segmentada</h4>
+              <p>Identificação de tendências antes e depois de 2015, com 2015 como ponto de quebra estrutural em todos os modelos.</p>
+            </div>
+          </li>
+          <li>
+            <span class="method-num mono">03</span>
+            <div>
+              <h4>Regressão polinomial</h4>
+              <p>Modelo de grau 3 (R² = 0,935) confirma que a inversão na cobertura de manguezal não é oscilação natural.</p>
+            </div>
+          </li>
+          <li>
+            <span class="method-num mono">04</span>
+            <div>
+              <h4>OLS multivariado</h4>
+              <p>Regressão múltipla com sumário estatístico completo via statsmodels, cruzando manguezal e produção pesqueira.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="impacto">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2 class="display">Para quem isso importa</h2>
+      <span class="section-tag">Três destinatários práticos</span>
+    </div>
+    <div class="audience-grid reveal">
+      <div class="audience-card">
+        <div class="icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#A8C4A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 6 5 9.5 5 13a7 7 0 0 0 14 0c0-3.5-3-7-7-11Z"/></svg>
+        </div>
+        <h3>Comunidades pesqueiras</h3>
+        <p>
+          Evidência quantitativa para embasar pedidos de indenização e políticas de
+          compensação junto à Fundação Renova e ao sistema judiciário.
+        </p>
+      </div>
+      <div class="audience-card">
+        <div class="icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#A8C4A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>
+        </div>
+        <h3>Gestores públicos</h3>
+        <p>
+          SEAMA-ES, IBAMA e Ministério da Pesca podem priorizar ações de restauração de
+          manguezal e definir zonas de proteção estuarina com base nos dados.
+        </p>
+      </div>
+      <div class="audience-card">
+        <div class="icon-wrap" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#A8C4A2" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        </div>
+        <h3>A sociedade</h3>
+        <p>
+          Traduz em números o custo humano de um desastre ambiental que raramente
+          aparece fora dos relatos das comunidades afetadas.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="limits-section" id="limitacoes">
+  <div class="wrap">
+    <div class="section-head reveal" style="border-bottom: none; margin-bottom: 40px;">
+      <h2 class="display">Limitações e transparência</h2>
+      <span class="section-tag">Declaradas explicitamente</span>
+    </div>
+    <div class="limits-list reveal">
+      <div class="limit-item">
+        <h4>Lacuna 2016–2020</h4>
+        <p>
+          Nenhuma fonte oficial de estatística pesqueira do ES cobre esse período
+          crítico. A ausência é reconhecida pela literatura científica
+          (Musiello-Fernandes et al., 2020; Braga et al., 2021) e reflete uma falha do
+          monitoramento pesqueiro brasileiro, não deste projeto.
+        </p>
+      </div>
+      <div class="limit-item">
+        <h4>Dados Sea Around Us</h4>
+        <p>
+          São reconstruções que incorporam estimativas de subnotificação além dos
+          desembarques oficiais (Pauly &amp; Zeller, 2016). Amplamente usadas em estudos
+          comparativos globais, mas devem ser lidas como estimativas, não registros
+          diretos.
+        </p>
+      </div>
+      <div class="limit-item">
+        <h4>Causalidade</h4>
+        <p>
+          Os modelos identificam correlação e mudança de tendência, não causalidade
+          estrita. Variáveis como sobreexplotação pesqueira, mudanças climáticas e
+          variações de mercado não foram controladas formalmente nesta etapa.
+        </p>
+      </div>
+      <div class="limit-item">
+        <h4>Caranguejo-uçá</h4>
+        <p>
+          A ausência de dados pós-2015 para essa espécie impede análise comparativa
+          pré/pós-Mariana, limitando as conclusões sobre seu comportamento recente.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <p class="footer-title display">
+        Análise desenvolvida como parte do Projeto Integrador III — Ciência da Computação.
+      </p>
+      <div class="footer-links">
+        <a href="#" target="_blank" rel="noopener">Repositório no GitHub ↗</a>
+        <a href="#" target="_blank" rel="noopener">Notebook completo ↗</a>
+        <a href="#" target="_blank" rel="noopener">Vídeo de apresentação ↗</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Gabriely Barbosa da Silva Azevedo · Guilherme dos Santos Gonçalves Bispo</span>
+      <span>Espírito Santo, 1985–2023</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
