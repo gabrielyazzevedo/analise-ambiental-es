@@ -75,15 +75,15 @@ O notebook `analise_pesca.ipynb` está organizado nas seguintes seções:
 
 - **Camarão sete barbas**: queda de 43,3% já em 2012 (de 2.752 t para 1.560 t), antes mesmo do desastre. Entre 2021 e 2023, as capturas (375 a 418 t) representam menos de 15% do pico de 2011. Projeção para 2024 a 2026 indica continuidade da queda lenta.
 
-- **Robalo**: declínio contínuo e acelerado, de aproximadamente 8,5 t no pico (2005 a 2006) para 0,21 t em 2023, redução superior a 96%.
+- **Robalo**: declínio contínuo e acelerado, de aproximadamente 9,0 t no pico (2005 a 2006) para 0,21 t em 2023, redução superior a 97%.
 
-- **Distribuição espacial**: Vitória concentra mais de 60% da captura estadual de camarão no período monitorado.
+- **Distribuição espacial**: Vitória concentra cerca de 52% da captura estadual de camarão no período monitorado, mais que todos os outros municípios somados.
 
 - **Sazonalidade**: o padrão sazonal histórico (pico em novembro, queda em janeiro e fevereiro por causa do defeso) se mantém, indicando que o problema é de volume de captura, não de abandono da atividade pesqueira.
 
 ## Impacto social estimado
 
-A seção de conclusão do notebook traduz a queda de captura em estimativa de perda de renda para pescadores artesanais. Partindo da renda per capita de referência do IPEA/PNAD (proporção em relação ao salário mínimo) e aplicando a queda ponderada de captura de camarão e robalo sobre a parcela da renda associada a essas espécies, estima se uma perda de aproximadamente R$ 314,92 por mês por pescador, equivalente a cerca de 35% da renda mensal de referência. Cenários de perda agregada para 300 e 1.000 pescadores também são apresentados como referência de ordem de grandeza. Todas as premissas numéricas estão declaradas explicitamente no notebook e na landing page.
+A seção de conclusão do notebook traduz a queda de captura em estimativa de perda de renda para pescadores artesanais. Partindo da renda per capita de referência do IPEA/PNAD (proporção em relação ao salário mínimo) e aplicando a queda ponderada de captura de camarão e robalo sobre a parcela da renda associada a essas espécies, estima se uma perda de aproximadamente R$ 314,92 por mês por pescador, equivalente a cerca de 35% da renda mensal de referência. Cenários de perda agregada para 300 e 1.000 pescadores também são apresentados como referência de ordem de grandeza. Todas as premissas numéricas estão declaradas explicitamente na seção de conclusão do notebook.
 
 ## Limitações declaradas
 
@@ -95,7 +95,7 @@ A seção de conclusão do notebook traduz a queda de captura em estimativa de p
 ## Como executar o notebook
 
 1. Clone o repositório.
-2. Instale as dependências: `pandas`, `numpy`, `matplotlib`, `seaborn`, `scikit-learn`, `statsmodels`.
+2. Instale as dependências: `pandas`, `numpy`, `matplotlib`, `seaborn`, `scikit-learn`, `statsmodels`, `openpyxl` (leitura dos arquivos `.xlsx`).
 3. Abra `analise_pesca.ipynb` em Jupyter Notebook ou JupyterLab.
 4. Execute as células em ordem. Os arquivos de dados de entrada devem estar na pasta `data/`.
 5. As figuras e os CSVs processados são gerados automaticamente na seção 6 do notebook.

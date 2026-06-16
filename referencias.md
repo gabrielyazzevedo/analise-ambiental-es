@@ -37,3 +37,5 @@ MAPBIOMAS. Coleção 9 de mapas anuais de cobertura e uso do solo do Brasil. Dis
 SEA AROUND US. Reconstrução de capturas pesqueiras globais por país e espécie. Disponível em: https://www.seaaroundus.org.
 
 PMAP-ES/UFES. Programa de Monitoramento da Atividade Pesqueira no Espírito Santo, dados de 2021 a 2023.
+
+INSTITUTO DE PESQUISA ECONÔMICA APLICADA (IPEA); IBGE. Pesquisa Nacional por Amostra de Domicílios (PNAD): renda per capita de pescadores artesanais. Base da estimativa de perda de renda apresentada na conclusão.
