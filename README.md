@@ -106,7 +106,7 @@ O arquivo `index.html` apresenta o projeto em formato de página web, com os pri
 
 ## Vídeo de apresentação
 
-[adicionar link do vídeo de apresentação]
+[(https://youtu.be/khxdImK9VaI?is=zyatUG5fTW2EbU-7)]
 
 ## Referências
 
